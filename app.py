@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 from controller import check_city, check_river, check_country
 
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/city")
 def city():
