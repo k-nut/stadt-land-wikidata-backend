@@ -80,7 +80,7 @@ def example_country(letter):
       ?item wdt:P31/wdt:P279* wd:Q6256 .
       ?item rdfs:label ?itemLabel .
       filter(lang(?itemLabel) = "de") .
-      filter(strStarts(lcase(?itemLabel), "c"))
+      filter(strStarts(lcase(?itemLabel), "{letter}"))
     }}
     order by desc(?length)
     limit 5"""
@@ -99,7 +99,7 @@ def example_city(letter):
       ?item wdt:P17 wd:Q183 .
       ?item rdfs:label ?itemLabel .
       filter(lang(?itemLabel) = "de") .
-      filter(strStarts(lcase(?itemLabel), "c"))
+      filter(strStarts(lcase(?itemLabel), "{letter}"))
     }}
     order by desc(?length)
     limit 5"""
