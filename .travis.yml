@@ -5,4 +5,6 @@ install:
   - "pip3 install -r requirements.txt"
   - "pip3 install -r requirements-dev.txt"
 script:
-  - "py.test test.py"
+  - "py.test test.py --cov=stadt_land_wikidata"
+after_success:
+  - codecov
