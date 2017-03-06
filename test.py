@@ -1,7 +1,7 @@
 from mock import patch
+import responses
 
 from stadt_land_wikidata import controller
-import responses
 
 
 @patch("stadt_land_wikidata.controller.make_query")
