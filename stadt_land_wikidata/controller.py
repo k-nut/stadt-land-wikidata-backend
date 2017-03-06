@@ -24,7 +24,6 @@ def check_city(name):
       ?item wdt:P17 wd:Q183 .
       ?item ?label "{name}"@de .
     }}
-
     """
     return make_query(name, template, "city")
 

@@ -1,11 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-
-from controller import check_city, check_river, check_country, example_river, example_city, example_country
-
-
-app = Flask(__name__)
-CORS(app)
+from stadt_land_wikidata import app
+from stadt_land_wikidata.controller import check_city, check_river, check_country, example_river, example_city, example_country
 
 
 def check(function, value):
@@ -52,7 +48,3 @@ def country_examples():
         return jsonify({'data': result})
     else:
         return jsonify({'data': None})
-
-
-if __name__ == "__main__":
-    app.run()
