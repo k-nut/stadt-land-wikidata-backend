@@ -4,7 +4,9 @@
 [![codecov](https://codecov.io/gh/k-nut/stadt-land-wikidata-backend/branch/master/graph/badge.svg)](https://codecov.io/gh/k-nut/stadt-land-wikidata-backend)
 
 
-backend for https://stadt-land-wikidata.netlify.com
+This is the backend code for https://stadt-land-wikidata.netlify.com
+
+The frontend code can be found here: https://github.com/k-nut/stadt-land-wikidata
 
 A small flask app that makes queries to [wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page) in order to check if people entered the right results in 
 the game of ["Stadt Land Fluss"](https://de.wikipedia.org/wiki/Stadt,_Land,_Fluss) and if not provides them with correct examples.
