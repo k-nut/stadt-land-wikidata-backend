@@ -11,7 +11,6 @@ def test_check_city(mock_query):
     WHERE
     {{
       ?item wdt:P31/wdt:P279* wd:Q515 .
-      ?item wdt:P17 wd:Q183 .
       ?item ?label "{name}"@de .
     }}
     """
@@ -34,7 +33,6 @@ def test_make_query_correct():
       WHERE
       {{
         ?item wdt:P31/wdt:P279* wd:Q515 .
-        ?item wdt:P17 wd:Q183 .
         ?item ?label "{name}"@de .
       }}
       """
@@ -55,7 +53,6 @@ def test_make_query_incorrect():
       WHERE
       {{
         ?item wdt:P31/wdt:P279* wd:Q515 .
-        ?item wdt:P17 wd:Q183 .
         ?item ?label "{name}"@de .
       }}
       """

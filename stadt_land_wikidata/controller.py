@@ -21,7 +21,6 @@ def check_city(name):
     WHERE
     {{
       ?item wdt:P31/wdt:P279* wd:Q515 .
-      ?item wdt:P17 wd:Q183 .
       ?item ?label "{name}"@de .
     }}
     """
@@ -44,7 +43,6 @@ def check_river(name):
     WHERE
     {{
       ?item wdt:P31/wdt:P279* wd:Q4022 .
-      ?item wdt:P17 wd:Q183 .
       ?item ?label "{name}"@de .
     }}
 
@@ -57,7 +55,6 @@ def example_river(letter):
     WHERE
     {{
       ?item wdt:P31/wdt:P279* wd:Q4022 .
-      ?item wdt:P17 wd:Q183 .
       ?item rdfs:label ?itemLabel .
       ?item wdt:P2043 ?length .
       filter(lang(?itemLabel) = "de") .
@@ -95,12 +92,10 @@ def example_city(letter):
     WHERE
     {{
       ?item wdt:P31/wdt:P279* wd:Q515 .
-      ?item wdt:P17 wd:Q183 .
       ?item rdfs:label ?itemLabel .
       filter(lang(?itemLabel) = "de") .
       filter(strStarts(lcase(?itemLabel), "{letter}"))
     }}
-    order by desc(?length)
     limit 5"""
     url = 'https://query.wikidata.org/bigdata/namespace/wdq/sparql'
     query = template.format(letter=letter.lower())
