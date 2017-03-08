@@ -50,6 +50,17 @@ def check_river(name):
     return make_query(name, template, "river")
 
 
+def check_profession(name):
+    template = """SELECT ?item
+    WHERE
+    {{
+      ?item wdt:P31/wdt:P279* wd:Q28640 .
+      ?item ?label "{name}"@de .
+    }}
+    """
+    return make_query(name, template, "profession")
+
+
 def example_river(letter):
     template = """SELECT ?item ?itemLabel ?length
     WHERE
@@ -101,4 +112,21 @@ def example_city(letter):
     query = template.format(letter=letter.lower())
     data = requests.get(url, params={'query': query, 'format': 'json'}).json()
     results = {"examples": data['results']['bindings'], "entity": "city"}
+    return results or None
+
+
+def example_profession(letter):
+    template = """SELECT ?item ?itemLabel ?length
+    WHERE
+    {{
+      ?item wdt:P31/wdt:P279* wd:Q28640 .
+      ?item rdfs:label ?itemLabel .
+      filter(lang(?itemLabel) = "de") .
+      filter(strStarts(lcase(?itemLabel), "{letter}"))
+    }}
+    limit 5"""
+    url = 'https://query.wikidata.org/bigdata/namespace/wdq/sparql'
+    query = template.format(letter=letter.lower())
+    data = requests.get(url, params={'query': query, 'format': 'json'}).json()
+    results = {"examples": data['results']['bindings'], "entity": "profession"}
     return results or None
