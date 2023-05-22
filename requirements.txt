@@ -1,5 +1,5 @@
 Flask==2.2.2
 Flask-Cors==3.0.10
-requests==2.21.0
+requests==2.31.0
 
 -r requirements-heroku.txt
