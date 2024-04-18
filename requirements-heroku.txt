@@ -1,2 +1,2 @@
 gevent==23.9.0.post1
-gunicorn==19.9.0
+gunicorn==22.0.0
