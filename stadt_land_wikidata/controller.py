@@ -1,10 +1,15 @@
 import requests
 
 
-def make_query(name, template, entity):
+def get(query):
     url = 'https://query.wikidata.org/bigdata/namespace/wdq/sparql'
+    user_agent = 'StadtLandWikidataBackend/0.0 (https://github.com/k-nut/stadt-land-wikidata-backend; stadt-land-wikidata@k-nut.eu)'
+    response = requests.get(url, headers={'User-Agent': user_agent}, params={'query': query, 'format': 'json'})
+    return response.json()
+
+def make_query(name, template, entity):
     query = template.format(name=name)
-    data = requests.get(url, params={'query': query, 'format': 'json'}).json()
+    data = get(query)
     results = data['results']['bindings']
     if results:
         return {'link': results[0]['item']['value'],
@@ -73,9 +78,8 @@ def example_river(letter):
     }}
     order by desc(?length)
     limit 5"""
-    url = 'https://query.wikidata.org/bigdata/namespace/wdq/sparql'
     query = template.format(letter=letter.lower())
-    data = requests.get(url, params={'query': query, 'format': 'json'}).json()
+    data = get(query)
     results = {"examples": data['results']['bindings'], "entity": "river"}
     return results or None
 
@@ -91,9 +95,8 @@ def example_country(letter):
     }}
     order by desc(?length)
     limit 5"""
-    url = 'https://query.wikidata.org/bigdata/namespace/wdq/sparql'
     query = template.format(letter=letter.lower())
-    data = requests.get(url, params={'query': query, 'format': 'json'}).json()
+    data = get(query)
     results = {"examples": data['results']['bindings'], "entity": "country"}
     return results or None
 
@@ -108,9 +111,8 @@ def example_city(letter):
       filter(strStarts(lcase(?itemLabel), "{letter}"))
     }}
     limit 5"""
-    url = 'https://query.wikidata.org/bigdata/namespace/wdq/sparql'
     query = template.format(letter=letter.lower())
-    data = requests.get(url, params={'query': query, 'format': 'json'}).json()
+    data = get(query)
     results = {"examples": data['results']['bindings'], "entity": "city"}
     return results or None
 
@@ -125,8 +127,7 @@ def example_profession(letter):
       filter(strStarts(lcase(?itemLabel), "{letter}"))
     }}
     limit 5"""
-    url = 'https://query.wikidata.org/bigdata/namespace/wdq/sparql'
     query = template.format(letter=letter.lower())
-    data = requests.get(url, params={'query': query, 'format': 'json'}).json()
+    data = get(query)
     results = {"examples": data['results']['bindings'], "entity": "profession"}
     return results or None
